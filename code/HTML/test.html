@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Campusflo</title>
+    <style>
+        /* Simple reset & basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .login-signup {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 320px;
+        }
+        .login, .signup {
+            display: block;
+        }
+        .hidden {
+            display: none;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .guest {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+        .guest:hover {
+            background: #5a6268;
+        }
+        .toggle-link {
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-signup">
+        <!-- LOGIN FORM (visible by default) -->
+        <div class="login">
+            <p>Welcome back</p>
+            <h1>Login</h1>
+            <form>
+                <!-- Correct: no closing tag for input -->
+                <input type="text" placeholder="Email"><br>
+                <input type="password" placeholder="Password"><br>
+                <p><input type="checkbox"> Remember me</p>
+                <button type="submit">Login</button>
+            </form>
+            <!-- Anchor now has href so it acts as a link -->
+            <p><a href="#">Forgot password?</a></p>
+            <p>
+                Don't have an account?
+                <span class="toggle-link" onclick="toggleForm()">Join us</span>
+            </p>
+        </div>
+
+        <!-- SIGNUP FORM (hidden by default) -->
+        <div class="signup hidden">
+            <h1>Sign Up</h1>
+            <form>
+                <input type="text" placeholder="Full name"><br>
+                <input type="email" placeholder="Email"><br>
+                <input type="password" placeholder="Password"><br>
+                <!-- Label associated with checkbox for accessibility -->
+                <input type="checkbox" id="privacy">
+                <label for="privacy">Accept privacy policy</label><br>
+                <input type="checkbox" id="promo">
+                <label for="promo">Receive promotional mails</label><br>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>
+                Already have an account?
+                <span class="toggle-link" onclick="toggleForm()">Log in</span>
+            </p>
+        </div>
+
+        <!-- Guest button does something simple for now -->
+        <button type="button" class="guest" onclick="alert('Continuing as guest...')">Go as a guest</button>
+    </div>
+
+    <script>
+        /**
+         * Toggles between the login and signup forms.
+         * By default, login is visible and signup has the "hidden" class.
+         * Clicking the toggle link hides one and shows the other.
+         */
+        function toggleForm() {
+            // Select elements by their CLASS names (CSS selector)
+            var loginDiv = document.querySelector(".login");
+            var signupDiv = document.querySelector(".signup");
+
+            // If signup is currently hidden, show it and hide login.
+            if (signupDiv.classList.contains("hidden")) {
+                signupDiv.classList.remove("hidden");
+                loginDiv.classList.add("hidden");
+            } else {
+                // Otherwise signup is visible; hide it and show login.
+                signupDiv.classList.add("hidden");
+                loginDiv.classList.remove("hidden");
+            }
+        }
+    </script>
+</body>
+</html>
