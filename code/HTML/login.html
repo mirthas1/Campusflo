@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Campusflo</title>
-    <script src="../JS/login.js"></script>
     <link rel="stylesheet" href="../CSS/login.css">
+    <script src="../JS/login.js" defer></script>
+    
+
 </head>
 <body>
-    <div class="auth-container">
-        <div class="login">
-            <p>Welcome back</p>
-            <h1>login</h1>
-            <form>
-                <input type="text" placeholder="Email"><br>
-                <input type="password" placeholder="Password"><br>
-                <input type="checkbox" id="remember"> <label for="remember">Remember me</label><br>
-                <button type="submit">login</button>
-            </form>
-            <p><a href="#">forgot password</a></p>
-            <p>Don't have an account <span class="signuplink" onclick="toggleform()"> join us </span></p>
+    <body>
+
+    <!-- ─── Theme Toggle (top‑left) ─── -->
+    <div class="theme-toggle" id="themeToggle" role="button" tabindex="0" aria-label="Toggle theme">
+        <div class="toggle-track"></div>
+        <div class="toggle-label">
+            <span class="icon" id="themeIcon">☀️</span>
+            <span id="themeLabel">Day</span>
         </div>
-        <div class="signup hidden">
-            <form>
-                <input type="text" placeholder="Fullname"><br>
-                <input type="email" placeholder="email"><br>
-                <input type="password" placeholder="password"><br>
-                <input type="checkbox" id="privacy"> <label for="privacy">Accept privacy policy</label><br>
-                <input type="checkbox" id="promo"> <label for="promo">Receive promotional mails</label><br>
-                <button type="submit">signup</button>
-            </form>
-            <p>Have an account <span class="login-link" onclick="toggleform()">get in</span></p>
-        </div>
-        <button type="button" class="guest">Go as a guest</button>
     </div>
-    <footer></footer>
+
+    <!-- ─── Centered Button Card ─── -->
+    <div class="button-card">
+        <h1>Campusflo</h1>
+        <p class="sub">Your campus companion</p>
+        <a href="index.html">
+            <button type="button" class="get-started-btn">Get started</button>
+        </a>
+    </div>
+
+</body>
 </body>
 </html>

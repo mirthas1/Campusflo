@@ -1,3 +1,236 @@
-.hidden {
-    display: none;
-}
+        /* ─── CSS Variables (theming) ─── */
+        :root {
+            /* Day theme (default) */
+            --bg: #f8f9fa;
+            --container: #ffffff;
+            --border: #e5e7eb;
+            --text: #1f2937;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --toggle-bg: #e5e7eb;
+            --toggle-dot: #ffffff;
+            --transition: 0.3s ease;
+        }
+
+        /* Night theme */
+        [data-theme="night"] {
+            --bg: #0b0f19;
+            --container: #161b26;
+            --border: #242c3d;
+            --text: #e5e7eb;
+            --accent: #6366f1;
+            --accent-hover: #818cf8;
+            --toggle-bg: #242c3d;
+            --toggle-dot: #6366f1;
+        }
+
+        /* ─── Reset & Base ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background var(--transition), color var(--transition);
+        }
+
+        /* ─── Page layout: flex center ─── */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+
+        /* ─── Theme toggle (top‑left, fixed) ─── */
+        .theme-toggle {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            background: var(--container);
+            padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+            border-radius: 2.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: background var(--transition), border var(--transition), box-shadow var(--transition);
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        /* toggle track */
+        .toggle-track {
+            position: relative;
+            width: 3rem;
+            height: 1.6rem;
+            background: var(--toggle-bg);
+            border-radius: 1.6rem;
+            transition: background var(--transition);
+            flex-shrink: 0;
+        }
+
+        /* toggle dot */
+        .toggle-track::after {
+            content: '';
+            position: absolute;
+            top: 0.2rem;
+            left: 0.2rem;
+            width: 1.2rem;
+            height: 1.2rem;
+            background: var(--toggle-dot);
+            border-radius: 50%;
+            transition: transform var(--transition), background var(--transition);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        /* night mode: dot slides right */
+        [data-theme="night"] .toggle-track::after {
+            transform: translateX(1.4rem);
+        }
+
+        .toggle-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--text);
+            transition: color var(--transition);
+            white-space: nowrap;
+        }
+
+        /* icon inside label */
+        .toggle-label .icon {
+            display: inline-block;
+            margin-right: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        /* ─── Button card (centered) ─── */
+        .button-card {
+            background: var(--container);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            padding: 3.5rem 5rem;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+            text-align: center;
+            transition: background var(--transition), border var(--transition), box-shadow var(--transition);
+            max-width: 90vw;
+        }
+
+        .button-card h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+            color: var(--text);
+            transition: color var(--transition);
+        }
+
+        .button-card .sub {
+            font-size: 1rem;
+            color: var(--text);
+            opacity: 0.65;
+            margin-bottom: 2rem;
+            transition: color var(--transition);
+        }
+
+        /* ─── Get Started button ─── */
+        .get-started-btn {
+            display: inline-block;
+            padding: 1rem 3.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            background: var(--accent);
+            border: none;
+            border-radius: 3rem;
+            cursor: pointer;
+            transition: background var(--transition), transform 0.15s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+            letter-spacing: 0.01em;
+            text-decoration: none;
+        }
+
+        .get-started-btn:hover {
+            background: var(--accent-hover);
+            transform: scale(1.02);
+            box-shadow: 0 12px 32px rgba(79, 70, 229, 0.35);
+        }
+
+        .get-started-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* night button shadow uses indigo */
+        [data-theme="night"] .get-started-btn {
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.30);
+        }
+        [data-theme="night"] .get-started-btn:hover {
+            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.45);
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 480px) {
+            .button-card {
+                padding: 2rem 1.5rem;
+            }
+            .button-card h1 {
+                font-size: 1.6rem;
+            }
+            .get-started-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+            .theme-toggle {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.35rem 0.6rem 0.35rem 0.6rem;
+            }
+            .toggle-label .icon {
+                margin-right: 0.15rem;
+            }
+            .toggle-label span:last-child {
+                font-size: 0.7rem;
+            }
+            .toggle-track {
+                width: 2.4rem;
+                height: 1.3rem;
+            }
+            .toggle-track::after {
+                width: 0.95rem;
+                height: 0.95rem;
+                top: 0.18rem;
+                left: 0.18rem;
+            }
+            [data-theme="night"] .toggle-track::after {
+                transform: translateX(1.1rem);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .button-card {
+                padding: 1.5rem 1rem;
+            }
+            .button-card h1 {
+                font-size: 1.3rem;
+            }
+            .get-started-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
